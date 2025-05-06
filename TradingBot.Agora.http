@@ -1,0 +1,6 @@
+@TradingBot.Agora_HostAddress = http://localhost:5168
+
+GET {{TradingBot.Agora_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
