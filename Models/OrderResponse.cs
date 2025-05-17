@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TradingBot.Agora.Models
+namespace Temperance.Agora.Models
 {
     public class OrderResponse
     {

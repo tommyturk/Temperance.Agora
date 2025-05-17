@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
-using TradingBot.Agora.Models;
-using TradingBot.Agora.Services.Interfaces;
-using TradingBot.Agora.Settings;
+using Temperance.Agora.Models;
+using Temperance.Agora.Services.Interfaces;
+using Temperance.Agora.Settings;
 
-namespace TradingBot.Agora.Services.Implementations
+namespace Temperance.Agora.Services.Implementations
 {
     public class AlpacaTradingService : IAlpacaTradingService
     {
@@ -33,8 +33,8 @@ namespace TradingBot.Agora.Services.Implementations
 
             var requestUri = "/v2/account";
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
+            //request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
+            //request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
             request.Headers.Add("Accept", "application/json");
 
             var response = await httpClient.SendAsync(request);
@@ -65,8 +65,7 @@ namespace TradingBot.Agora.Services.Implementations
 
             var requestUri = $"/v2/orders/{id}";
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
+            
             request.Headers.Add("Accept", "application/json");
 
             var response = await client.SendAsync(request);
@@ -98,8 +97,7 @@ namespace TradingBot.Agora.Services.Implementations
             var requestUri = "/v2/orders";
 
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
+
             request.Headers.Add("Accept", "application/json");
             var response = await httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
@@ -150,9 +148,6 @@ namespace TradingBot.Agora.Services.Implementations
                 Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
             };
 
-            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
-
             HttpResponseMessage response = await httpClient.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
@@ -180,9 +175,8 @@ namespace TradingBot.Agora.Services.Implementations
                 return null;
             }
             var requestUri = "/v2/assets";
-            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
+            using var request = new HttpRequestMessage(HttpMethod.Get, $"{_alpacaConfigSettings.PaperBaseUrl}{requestUri}");
+
             request.Headers.Add("Accept", "application/json");
 
             var response = httpClient.SendAsync(request).Result;

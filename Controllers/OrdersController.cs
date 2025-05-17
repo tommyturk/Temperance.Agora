@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TradingBot.Agora.Models;
-using TradingBot.Agora.Services.Interfaces;
+using Temperance.Agora.Models;
+using Temperance.Agora.Services.Interfaces;
 
-namespace TradingBot.Agora.Controllers
+namespace Temperance.Agora.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

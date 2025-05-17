@@ -1,4 +1,4 @@
-﻿namespace TradingBot.Agora.Services.Interfaces
+﻿namespace Temperance.Agora.Services.Interfaces
 {
     public interface IAlpacaLivePriceService
     {

@@ -1,7 +1,7 @@
 ﻿using Alpaca.Markets;
-using TradingBot.Agora.Models;
+using Temperance.Agora.Models;
 
-namespace TradingBot.Agora.Services.Interfaces
+namespace Temperance.Agora.Services.Interfaces
 {
     public interface IAlpacaTradingService
     {

@@ -1,6 +1,6 @@
 ﻿using Alpaca.Markets;
 
-namespace TradingBot.Agora.Models
+namespace Temperance.Agora.Models
 {
     public class OrderPlacementRequest
     {

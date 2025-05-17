@@ -1,4 +1,4 @@
-﻿namespace TradingBot.Agora.Settings
+﻿namespace Temperance.Agora.Settings
 {
     public interface IAlpacaConfigSettings
     {

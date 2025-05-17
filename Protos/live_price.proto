@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Temperance.Agora;
+
+service LivePrice{
+	rpc ConnectAndSubscribe (ConnectRequest) returns (ConnectResponse);
+}
+
+message ConnectRequest{
+	repeated string symbols = 1;
+}
+
+message ConnectResponse{
+	bool success = 1;
+	string message = 2;
+}
