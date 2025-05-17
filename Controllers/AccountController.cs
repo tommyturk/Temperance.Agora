@@ -27,15 +27,7 @@ namespace Temperance.Agora.Controllers
                 return NotFound();
             }
 
-            return Ok(new
-            {
-                account.AccountId,
-                account.AccountNumber,
-                account.Status,
-                account.Currency,
-                account.BuyingPower,
-                account.Equity,
-            });
+            return Ok(account);
         }
     }
 }

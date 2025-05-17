@@ -33,8 +33,8 @@ namespace Temperance.Agora.Services.Implementations
 
             var requestUri = "/v2/account";
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            //request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
-            //request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
+            request.Headers.Add("APCA-API-KEY-ID", _alpacaConfigSettings.PaperApiKeyId);
+            request.Headers.Add("APCA-API-SECRET-KEY", _alpacaConfigSettings.PaperApiSecretKey);
             request.Headers.Add("Accept", "application/json");
 
             var response = await httpClient.SendAsync(request);

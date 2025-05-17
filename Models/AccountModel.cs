@@ -5,90 +5,45 @@ namespace Temperance.Agora.Models
 {
     public class AccountModel : IAccount
     {
-        // --- IAccount Interface Properties ---
-
-        /// <summary>
-        /// Gets unique account identifier. Maps from "id".
-        /// </summary>
         [JsonPropertyName("id")]
         public Guid AccountId { get; set; }
-
-        /// <summary>
-        /// Gets updated account status. Maps from "status".
-        /// </summary>
+        
         [JsonPropertyName("status")]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public AccountStatus Status { get; set; }
 
-        /// <summary>
-        /// Gets updated crypto account status. Maps from "crypto_status".
-        /// </summary>
         [JsonPropertyName("crypto_status")]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public AccountStatus CryptoStatus { get; set; }
 
-        /// <summary>
-        /// Gets main account currency. Maps from "currency".
-        /// </summary>
         [JsonPropertyName("currency")]
         public string? Currency { get; set; }
 
-        /// <summary>
-        /// Gets amount of money available for trading (maps from "cash").
-        /// Note: Alpaca V2 documentation often refers to "cash" as tradable cash.
-        /// </summary>
         [JsonPropertyName("cash")]
         [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public decimal TradableCash { get; set; }
 
-        /// <summary>
-        /// Gets timestamp of account creation event in UTC. Maps from "created_at".
-        /// </summary>
         [JsonPropertyName("created_at")]
         public DateTime CreatedAtUtc { get; set; }
 
-        /// <summary>
-        /// Gets account number (string identifier). Maps from "account_number".
-        /// </summary>
         [JsonPropertyName("account_number")]
         public string? AccountNumber { get; set; }
 
-        /// <summary>
-        /// Returns <c>true</c> if account is linked to pattern day trader. Maps from "pattern_day_trader".
-        /// </summary>
         [JsonPropertyName("pattern_day_trader")]
         public bool IsDayPatternTrader { get; set; }
 
-        /// <summary>
-        /// Returns <c>true</c> if account trading functions are blocked. Maps from "trading_blocked".
-        /// </summary>
         [JsonPropertyName("trading_blocked")]
         public bool IsTradingBlocked { get; set; }
 
-        /// <summary>
-        /// Returns <c>true</c> if account transfer functions are blocked. Maps from "transfers_blocked".
-        /// </summary>
         [JsonPropertyName("transfers_blocked")]
         public bool IsTransfersBlocked { get; set; }
 
-        /// <summary>
-        /// User setting. If <c>true</c>, the account is not allowed to place orders. Maps from "trade_suspended_by_user".
-        /// </summary>
         [JsonPropertyName("trade_suspended_by_user")]
         public bool TradeSuspendedByUser { get; set; }
 
-        /// <summary>
-        /// Flag to denote whether or not the account is permitted to short. Maps from "shorting_enabled".
-        /// </summary>
         [JsonPropertyName("shorting_enabled")]
         public bool ShortingEnabled { get; set; }
 
-        /// <summary>
-        /// Buying power multiplier that represents account margin classification. Maps from "multiplier".
-        /// Needs a JsonConverter if the API returns it as a string "2" instead of an int or enum name.
-        /// Assuming System.Text.Json can handle string representation of numbers for enums if configured.
-        /// Alternatively, use a specific converter or handle manually after deserialization.
-        /// </summary>
         [JsonPropertyName("multiplier")]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Multiplier Multiplier { get; set; }
