@@ -65,7 +65,7 @@ namespace Temperance.Agora.Services.Implementations
 
             var requestUri = $"/v2/orders/{id}";
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            
+
             request.Headers.Add("Accept", "application/json");
 
             var response = await client.SendAsync(request);
@@ -322,6 +322,7 @@ namespace Temperance.Agora.Services.Implementations
                 return null;
             }
         }
+
 
         private void AddHeaders(HttpRequestMessage request)
         {

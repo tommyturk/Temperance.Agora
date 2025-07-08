@@ -7,5 +7,7 @@
         string PaperApiSecretKey { get; set; }
 
         string PaperBaseUrl { get; set; }
+        
+        string SandboxBaseUrl { get; set; }
     }
 }

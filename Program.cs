@@ -30,6 +30,19 @@ builder.Services.AddHttpClient("AlpacaClient", (serviceProvider, client) =>
     client.DefaultRequestHeaders.Add("APCA-API-SECRET-KEY", "nKTnIdP7Iseg6eRoZfWaSd5Ze5tF006J3O2yPgUT");
 });
 
+
+builder.Services.AddHttpClient("AlpacaSandboxClient", (serviceProvider, client) =>
+{
+    var alpacaConfig = serviceProvider.GetRequiredService<IOptions<AlpacaConfigSettings>>().Value;
+    Console.WriteLine($"AlpacaSandboxClient HttpClient: ApiKeyId={alpacaConfig.PaperApiKeyId}, ApiSecretKey={alpacaConfig.PaperApiSecretKey}, SandboxBaseUrl={alpacaConfig.SandboxBaseUrl}");
+    if (string.IsNullOrEmpty(alpacaConfig.SandboxBaseUrl))
+        throw new InvalidOperationException("Alpaca API base URL must be provided.");
+    client.BaseAddress = new Uri(alpacaConfig.SandboxBaseUrl);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    client.DefaultRequestHeaders.Add("APCA-API-KEY-ID", "PK87W17KTFVBOHJJ6WPZ");
+    client.DefaultRequestHeaders.Add("APCA-API-SECRET-KEY", "nKTnIdP7Iseg6eRoZfWaSd5Ze5tF006J3O2yPgUT");
+});
+
 builder.Services.AddScoped<IAlpacaTradingService, AlpacaTradingService>();
 
 builder.Services.AddGrpc();
